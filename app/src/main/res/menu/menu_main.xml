@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menuBtnCreatePost"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_black_create_post"
         app:showAsAction="always"
         android:title="Create"
         android:color="@color/black"/>

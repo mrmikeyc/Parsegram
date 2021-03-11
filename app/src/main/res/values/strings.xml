@@ -12,4 +12,6 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
     <string name="IntroTitle">Welcome to Parsegram!</string>
+    <string name="DescriptionHint">What do you want to say?</string>
+    <string name="PictureButtonText">Take a picture!</string>
 </resources>
