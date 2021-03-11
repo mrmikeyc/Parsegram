@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
-        startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
+        startActivity(intent);
+
+        // TODO: Find a way to make this finish only if the user successfully logs in
+        finish();
     }
 }

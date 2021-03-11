@@ -72,5 +72,9 @@ public class LoginActivity extends AppCompatActivity {
     private void goToFeedActivity() {
         Intent intent = new Intent(this, FeedActivity.class);
         startActivity(intent);
+
+        // Finish the activity is good because this will remove the activity from the stack, so
+        // the back button won't bring us back to the login screen.
+        finish();
     }
 }
