@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.parse.ParseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check if someone is already logged on.
+        if (ParseUser.getCurrentUser() != null) {
+            bypassLoginToFeedActivity();
+        }
 
         btnLogin = findViewById(R.id.btnLogin);
         btnSignup = findViewById(R.id.btnSignup);
@@ -41,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 gotoSignupActivity();
             }
         });
+    }
+
+    private void bypassLoginToFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

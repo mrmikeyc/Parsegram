@@ -56,15 +56,16 @@ public class LoginActivity extends AppCompatActivity {
                 // If we succeed, go to feed activity
                 // otherwise, error
 
-                if (e != null) {
+                if (e == null) {
+                    // Provided we didn't fail, go to feed activity
+                    goToFeedActivity();
+                    Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                } else {
                     Log.e(TAG, "Issue with login: " + e);
-                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT);
-                    return;
+                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                 }
 
-                // Provided we didn't fail, go to feed activity
-                goToFeedActivity();
-                Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                loadingProgressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
