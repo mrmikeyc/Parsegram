@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menuBtnCreatePost"
-        android:icon="@drawable/ic_black_create_post"
+        android:id="@+id/menuBtnUserDetails"
+        android:icon="@drawable/ic_settings_dark"
         app:showAsAction="always"
         android:title="Create"
         android:color="@color/black"/>
