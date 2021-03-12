@@ -35,7 +35,7 @@ import java.io.File;
 public class CreatePostActivity extends AppCompatActivity {
 
     private static final String TAG = CreatePostActivity.class.getSimpleName();
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 300;
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 400;
 
     // Submit button is contained within the action bar
     Button btnTakePicture;
@@ -110,6 +110,7 @@ public class CreatePostActivity extends AppCompatActivity {
                     Log.i(TAG, "Post was successfully saved!");
                     etDescription.setText("");
                     ivCreatePostDisplay.setImageResource(0);
+                    // TODO: Move this out of the background thread to automatically go back to feed
                     setResult(RESULT_OK);
                     finish();
                 } else {

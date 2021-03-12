@@ -1,23 +1,22 @@
 package com.example.parsegram;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FeedActivity extends AppCompatActivity {
 
     private static final int CREATE_POST_REQUEST_CODE = 200;
-    private static final int USER_SETTINGS_REQUEST_CODE = 100;
+    private static final int USER_SETTINGS_REQUEST_CODE = 300;
     private static final String TAG = FeedActivity.class.getSimpleName();
 
     FloatingActionButton fabCreatePost;
@@ -50,6 +49,7 @@ public class FeedActivity extends AppCompatActivity {
         if (requestCode == CREATE_POST_REQUEST_CODE && resultCode == RESULT_OK) {
             // TODO: Refresh the recyclerview to have the newest post
         } else if (requestCode == USER_SETTINGS_REQUEST_CODE && resultCode == RESULT_OK) {
+            // This result implies they hit the logout button
             backToLogin();
         }
 
@@ -57,7 +57,7 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     private void backToLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

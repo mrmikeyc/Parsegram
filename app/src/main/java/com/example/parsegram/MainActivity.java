@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if someone is already logged on.
         if (ParseUser.getCurrentUser() != null) {
-            bypassLoginToFeedActivity();
+            Log.i(TAG, String.format("User [%s] was already logged on - moving to feed!", ParseUser.getCurrentUser().getUsername()));
+            goToFeedActivity();
         }
 
         btnLogin = findViewById(R.id.btnLogin);
@@ -44,25 +45,28 @@ public class MainActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: Implement signup functionality
+                Log.i(TAG, "Sign up button pressed");
                 gotoSignupActivity();
             }
         });
-    }
-
-    private void bypassLoginToFeedActivity() {
-        Intent intent = new Intent(this, FeedActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Can handle any intent data passed back
+            Log.i(TAG, "Login successful, moving to feed screen");
+            goToFeedActivity();
+            finish();
         }
-
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void goToFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void gotoSignupActivity() {
@@ -70,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-
-        // TODO: Find a way to make this finish only if the user successfully logs in
-        finish();
+        startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
     }
 }

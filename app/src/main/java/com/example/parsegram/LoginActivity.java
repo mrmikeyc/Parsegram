@@ -1,6 +1,5 @@
 package com.example.parsegram;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,29 +52,17 @@ public class LoginActivity extends AppCompatActivity {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
-                // If we succeed, go to feed activity
-                // otherwise, error
-
                 if (e == null) {
-                    // Provided we didn't fail, go to feed activity
-                    goToFeedActivity();
+                    // If login successful, pop back to main and then go to feed activity from MainActivity
+                    setResult(RESULT_OK);
                     Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
                     Log.e(TAG, "Issue with login: " + e);
                     Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                 }
-
                 loadingProgressBar.setVisibility(View.INVISIBLE);
             }
         });
-    }
-
-    private void goToFeedActivity() {
-        Intent intent = new Intent(this, FeedActivity.class);
-        startActivity(intent);
-
-        // Finish the activity is good because this will remove the activity from the stack, so
-        // the back button won't bring us back to the login screen.
-        finish();
     }
 }
