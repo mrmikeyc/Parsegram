@@ -49,9 +49,17 @@ public class FeedActivity extends AppCompatActivity {
 
         if (requestCode == CREATE_POST_REQUEST_CODE && resultCode == RESULT_OK) {
             // TODO: Refresh the recyclerview to have the newest post
+        } else if (requestCode == USER_SETTINGS_REQUEST_CODE && resultCode == RESULT_OK) {
+            backToLogin();
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void backToLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -66,7 +74,7 @@ public class FeedActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.menuBtnUserDetails) {
             // Go to create user details
             Log.i(TAG, "Entering user details activity");
-            Intent intent = new Intent(this, CreatePostActivity.class);
+            Intent intent = new Intent(this, UserDetails.class);
             startActivityForResult(intent, USER_SETTINGS_REQUEST_CODE);
         }
         return super.onOptionsItemSelected(item);
