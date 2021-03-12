@@ -1,6 +1,7 @@
 package com.example.parsegram;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        queryPosts();
+        // queryPosts();
     }
 
     private void queryPosts() {
@@ -69,7 +70,16 @@ public class FeedActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CreatePostActivity.class);
             startActivityForResult(intent, CREATE_POST_REQUEST_CODE);
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (requestCode == CREATE_POST_REQUEST_CODE && resultCode == RESULT_OK) {
+            // TODO: handle data that was just posted from Create menu...
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
