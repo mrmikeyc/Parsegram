@@ -7,29 +7,40 @@ import android.widget.ImageView;
 
 import com.example.parsegram.Post;
 import com.example.parsegram.R;
+import com.parse.ParseException;
 
 import java.io.File;
-import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class FeedPost {
 
     private static final String TAG = FeedPost.class.getSimpleName();
     String user;
     String description;
-    String createdAt;
+    Date createdAt;
     File imageFile;
     File profilePicture;
 
-    public FeedPost(Post post) {
+    public FeedPost(Post post) throws ParseException {
         // Can get all attributes of post from the Post data type from the parsegram server
-        this.user = post.getUser().getUsername();
+        this.user = post.getUser().fetchIfNeeded().getUsername();
         this.description = post.getDescription();
-        this.createdAt = post.getCreatedAt().toString();
+        this.createdAt = post.getCreatedAt();
         try {
             this.imageFile = post.getImage().getFile();
         } catch ( com.parse.ParseException e) {
             Log.e(TAG, "Parse error creating post: " + e);
         }
+    }
+
+    public static List<FeedPost> createFeedPostList(List<Post> queriedPosts) throws ParseException {
+        List<FeedPost> feedPosts = new ArrayList<>();
+        for (int i = 0; i < queriedPosts.size(); i++ ) {
+            feedPosts.add(new FeedPost(queriedPosts.get(i)));
+        }
+        return feedPosts;
     }
 
     public String getUser() {
@@ -40,7 +51,7 @@ public class FeedPost {
         return description;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp">
 
     <ImageView
         android:id="@+id/ivPostProfilePicture"
@@ -41,13 +42,11 @@
 
         tools:srcCompat="@tools:sample/avatars" />
 
-    <EditText
-        android:id="@+id/etPostDescription"
+    <TextView
+        android:id="@+id/tvPostDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivPostImage"
         android:layout_marginTop="10dp"
-        android:editable="false"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+        android:ems="10"/>
 </RelativeLayout>
