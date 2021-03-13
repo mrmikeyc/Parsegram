@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivPostProfilePicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvPostUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/ivPostProfilePicture"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        tools:text="MikeyC" />
+
+    <TextView
+        android:id="@+id/tvPostCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="7 minutes ago"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/ivPostImage"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_below="@+id/ivPostProfilePicture"
+        android:layout_centerHorizontal="true"
+
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/etPostDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivPostImage"
+        android:layout_marginTop="10dp"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+</RelativeLayout>

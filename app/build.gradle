@@ -40,6 +40,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // Recycler
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
     // For Parse
     implementation "com.github.parse-community.Parse-SDK-Android:parse:1.18.5"
 
