@@ -23,6 +23,7 @@ The following **additional** features are implemented:
 
 - [x] Loading bar for sign up and login page while Parse is creating/authenticating
 - [x] Floating action button to bring user to the create post section
+- [ ] ** Need to implement swipe to refresh on recyclerview, or manually push newest created post to recycler view **
 
 ## Video Walkthrough
 
@@ -30,15 +31,15 @@ Here's a walkthrough of implemented user stories:
 
 Signup functionality:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='360' alt='Video Walkthrough' />
+<img src='https://github.com/mrmikeyc/Parsegram/blob/master/ParsegramPt1_Signup.gif' title='Video Walkthrough' width='360' alt='Video Walkthrough' />
 
 Login functionality:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='360' alt='Video Walkthrough' />
+<img src='https://github.com/mrmikeyc/Parsegram/blob/master/ParsegramPt1_Login.gif' title='Video Walkthrough' width='360' alt='Video Walkthrough' />
 
 Create post functionality:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='360' alt='Video Walkthrough' />
+<img src='https://github.com/mrmikeyc/Parsegram/blob/master/ParsegramPt1_CreatePost.gif' title='Video Walkthrough' width='360' alt='Video Walkthrough' />
 
 GIFs created with ScreenToGif
 
