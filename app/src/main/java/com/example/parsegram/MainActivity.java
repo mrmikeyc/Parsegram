@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int LOGIN_ACTIVITY_REQUEST_CODE = 100;
+    private static final int SIGN_UP_ACTIVITY_REQUEST_CODE = 700;
 
     Button btnLogin;
     Button btnSignup;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement signup functionality
+                // Start intent to go to sign up activity
                 Log.i(TAG, "Sign up button pressed");
                 gotoSignupActivity();
             }
@@ -59,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "Login successful, moving to feed screen");
             goToFeedActivity();
             finish();
+        } else if (requestCode == SIGN_UP_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Log.i(TAG, "Sign up successful, moving to feed screen");
+            goToFeedActivity();
+            finish();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -70,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gotoSignupActivity() {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivityForResult(intent, SIGN_UP_ACTIVITY_REQUEST_CODE);
     }
 
     private void goToLoginActivity() {
