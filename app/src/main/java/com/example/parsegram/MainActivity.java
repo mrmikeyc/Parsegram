@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToFeedActivity() {
-        Intent intent = new Intent(this, FeedActivity.class);
+        Intent intent = new Intent(this, HostActivity.class);
         startActivity(intent);
         finish();
     }
