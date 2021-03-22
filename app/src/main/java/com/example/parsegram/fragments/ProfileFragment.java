@@ -52,6 +52,8 @@ public class ProfileFragment extends FeedFragment {
     }
 
     // FOR CUSTOMIZED ACTION BAR //
+    // https://developer.android.com/guide/fragments/appbar
+
     // Need this to put setHasOptionsMenu to true in order to populate my own options to the action bar
     @Override
     public void onCreate(Bundle savedInstanceState) {

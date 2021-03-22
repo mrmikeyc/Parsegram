@@ -63,6 +63,10 @@ public class HostActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
+    public void manuallyNavigateHome() {
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
+    }
+
     // This method is called from ProfileFragment menuBtnSignOut
     public void backToLogin() {
         ParseUser.logOutInBackground(new LogOutCallback() {

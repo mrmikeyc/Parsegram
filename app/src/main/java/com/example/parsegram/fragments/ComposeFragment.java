@@ -15,6 +15,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,6 +25,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.parsegram.CreatePostActivity;
+import com.example.parsegram.HostActivity;
 import com.example.parsegram.models.Post;
 import com.example.parsegram.R;
 import com.parse.ParseException;
@@ -47,11 +52,6 @@ public class ComposeFragment extends Fragment {
 
     public ComposeFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -128,8 +128,10 @@ public class ComposeFragment extends Fragment {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.i(TAG, "Post was successfully saved!");
+                    Toast.makeText(getContext(), "Your post was saved!", Toast.LENGTH_SHORT).show();
                     etDescription.setText("");
                     ivCreatePostDisplay.setImageResource(0);
+                    ((HostActivity)getActivity()).manuallyNavigateHome();
                 } else {
                     Log.e(TAG, "Error while saving: " + e);
                     Toast.makeText(getContext(), "Unable to save post", Toast.LENGTH_LONG).show();
@@ -154,5 +156,38 @@ public class ComposeFragment extends Fragment {
             Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    // CREATING POST BUTTON IN MENU //
+    // https://developer.android.com/guide/fragments/appbar
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.creation_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.menuBtnFinishPost) {
+            String description = etDescription.getText().toString();
+            ParseUser user = ParseUser.getCurrentUser();
+
+            // Handling for if there is no current photo, or no photo is shown
+            if (photoFile == null || ivCreatePostDisplay.getDrawable() == null) {
+                Toast.makeText(getContext(), "There is no image for this post!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            savePost(description, user, photoFile);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
