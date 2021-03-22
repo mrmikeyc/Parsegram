@@ -1,6 +1,8 @@
 package com.example.parsegram;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -13,6 +15,9 @@ import com.example.parsegram.fragments.ComposeFragment;
 import com.example.parsegram.fragments.FeedFragment;
 import com.example.parsegram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.LogOutCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 // TODO: Rename HostActivity to be more generic because now it has rotating fragments
 public class HostActivity extends AppCompatActivity {
@@ -56,5 +61,22 @@ public class HostActivity extends AppCompatActivity {
         });
         // Default navigation selection (good for when the app starts up)
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+    }
+
+    // This method is called from ProfileFragment menuBtnSignOut
+    public void backToLogin() {
+        ParseUser.logOutInBackground(new LogOutCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Intent intent = new Intent(HostActivity.this, MainActivity.class);
+                    Toast.makeText(HostActivity.this, "You have been signed out!", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Log.e(TAG, "Error logging out: " + e);
+                }
+            }
+        });
     }
 }

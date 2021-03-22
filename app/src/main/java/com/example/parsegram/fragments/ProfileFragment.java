@@ -1,8 +1,14 @@
 package com.example.parsegram.fragments;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+
+import com.example.parsegram.HostActivity;
 import com.example.parsegram.R;
 import com.example.parsegram.models.Post;
 import com.parse.FindCallback;
@@ -43,5 +49,31 @@ public class ProfileFragment extends FeedFragment {
                 }
             }
         });
+    }
+
+    // FOR CUSTOMIZED ACTION BAR //
+    // Need this to put setHasOptionsMenu to true in order to populate my own options to the action bar
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    // Will receive the action bar from the HostActivity
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        // super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_user_profile, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuBtnSignOut: {
+                ((HostActivity)getActivity()).backToLogin();
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

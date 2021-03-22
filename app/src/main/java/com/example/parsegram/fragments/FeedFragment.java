@@ -85,32 +85,6 @@ public class FeedFragment extends Fragment {
             }
         });
     }
-
-//    private void goToCreateActivity() {
-//        Log.i(TAG, "Starting create activity");
-//        Intent intent = new Intent(HostActivity.this, CreatePostActivity.class);
-//        startActivityForResult(intent, CREATE_POST_REQUEST_CODE);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//
-//        if (requestCode == CREATE_POST_REQUEST_CODE && resultCode == RESULT_OK) {
-//            // TODO: Refresh the recyclerview to have the newest post
-//        } else if (requestCode == USER_SETTINGS_REQUEST_CODE && resultCode == RESULT_OK) {
-//            // This result implies they hit the logout button
-//            backToLogin();
-//        }
-//
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
-//
-//    private void backToLogin() {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//        finish();
-//    }
-
 }
 
 // Query format

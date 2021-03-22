@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menuBtnUserDetails"
+        android:id="@+id/menuBtnSignOut"
+        android:color="@color/black"
         android:icon="@drawable/ic_settings_dark"
-        app:showAsAction="always"
-        android:title="Create"
-        android:color="@color/black"/>
+        android:title="Sign out"
+        app:showAsAction="never" />
 </menu>
