@@ -15,8 +15,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,8 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.parsegram.CreatePostActivity;
-import com.example.parsegram.Post;
+import com.example.parsegram.models.Post;
 import com.example.parsegram.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;

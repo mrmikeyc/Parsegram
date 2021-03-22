@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:layout_marginBottom="30dp">
 
     <ImageView
@@ -17,7 +18,7 @@
         android:id="@+id/tvPostUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPostProfilePicture"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -35,11 +36,10 @@
 
     <ImageView
         android:id="@+id/ivPostImage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@+id/ivPostProfilePicture"
-        android:layout_centerHorizontal="true"
-
+        android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -48,5 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivPostImage"
         android:layout_marginTop="10dp"
-        android:ems="10"/>
+        android:ems="10"
+        tools:text="This is my caption!" />
 </RelativeLayout>

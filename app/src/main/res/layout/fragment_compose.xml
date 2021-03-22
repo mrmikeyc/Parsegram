@@ -9,11 +9,12 @@
     <ImageView
         android:id="@+id/ivCreateImageDisplay"
         android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_height="match_parent"
         android:layout_above="@+id/etCreateDescription"
+        android:layout_alignParentTop="true"
         android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_height="match_parent" />
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
         android:id="@+id/etCreateDescription"

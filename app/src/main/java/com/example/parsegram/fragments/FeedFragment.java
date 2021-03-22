@@ -13,10 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.parsegram.Post;
+import com.example.parsegram.models.Post;
 import com.example.parsegram.PostAdapter;
 import com.example.parsegram.R;
-import com.example.parsegram.models.FeedPost;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -29,8 +28,9 @@ public class FeedFragment extends Fragment {
 
     private static final String TAG = FeedFragment.class.getSimpleName();
 
-    List<FeedPost> posts;
+    List<Post> allPosts;
     PostAdapter adapter;
+    RecyclerView rvPosts;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -52,14 +52,11 @@ public class FeedFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // TODO: Move RV to a fragment
-        RecyclerView rvPosts = (RecyclerView) view.findViewById(R.id.rvPosts);
-        posts = new ArrayList<>();
-        adapter = new PostAdapter(getContext(), posts);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        rvPosts.setLayoutManager(linearLayoutManager);
+        rvPosts = view.findViewById(R.id.rvPosts);
+        allPosts = new ArrayList<>();
+        adapter = new PostAdapter(getContext(), allPosts);
+        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         rvPosts.setAdapter(adapter);
-
         fetchPosts();
     }
 
@@ -76,13 +73,9 @@ public class FeedFragment extends Fragment {
                 // The list of all post objects that fit our query
 
                 if (e == null) {
-                    try {
-                        // Note that a Post is a db response item, and a FeedPost is a model
-                        posts.addAll(FeedPost.createFeedPostList(queriedPosts));
-                        Collections.reverse(posts);
-                    } catch (ParseException parseException) {
-                        parseException.printStackTrace();
-                    }
+                    // Note that a Post is a db response item, and a FeedPost is a model
+                    allPosts.addAll(queriedPosts);
+                    Collections.reverse(allPosts);
                     adapter.notifyDataSetChanged();
                 } else {
                     Log.e(TAG, "Error querying post data: " + e);

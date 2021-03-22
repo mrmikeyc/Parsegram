@@ -35,16 +35,13 @@ public class HostActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        Toast.makeText(HostActivity.this, "Navigating Home", Toast.LENGTH_SHORT).show();
                         fragment = new FeedFragment();
                         break;
                     case R.id.action_compose:
-                        Toast.makeText(HostActivity.this, "Navigating Create", Toast.LENGTH_SHORT).show();
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
                         // TODO: Update fragment to go to profile
-                        Toast.makeText(HostActivity.this, "Navigating Profile", Toast.LENGTH_SHORT).show();
                         fragment = new ComposeFragment();
                         break;
                     default:
@@ -58,9 +55,6 @@ public class HostActivity extends AppCompatActivity {
             }
         });
         // Default navigation selection (good for when the app starts up)
-        // TODO: Change this to Feed Fragment
         bottomNavigationView.setSelectedItemId(R.id.action_home);
-
-
     }
 }

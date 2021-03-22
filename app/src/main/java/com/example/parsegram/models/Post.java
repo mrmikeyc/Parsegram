@@ -1,4 +1,4 @@
-package com.example.parsegram;
+package com.example.parsegram.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
@@ -11,6 +11,7 @@ public class Post extends ParseObject {
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_USER = "user";
     public static final String KEY_IMAGE = "image";
+    public static final String KEY_POST_ID = "objectId";
 
     // Description
     public String getDescription() {
@@ -38,4 +39,6 @@ public class Post extends ParseObject {
     public void setImage(ParseFile parseFile) {
         put(KEY_IMAGE, parseFile);
     }
+
+    public String getPostID() { return getString(KEY_POST_ID); }
 }
