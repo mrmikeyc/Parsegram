@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="5dp"
     tools:context=".fragments.ComposeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/ivCreateImageDisplay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/etCreateDescription"
+        android:layout_weight="1"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_height="match_parent" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/etCreateDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnTakePicture"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/DescriptionHint"
+        android:inputType="textMultiLine"
+        android:minLines="5" />
+
+    <Button
+        android:id="@+id/btnTakePicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:backgroundTint="@color/SimpleTan"
+        android:text="@string/PictureButtonText" />
+
+</RelativeLayout>
