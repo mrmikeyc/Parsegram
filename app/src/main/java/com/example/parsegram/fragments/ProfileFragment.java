@@ -42,8 +42,12 @@ public class ProfileFragment extends FeedFragment {
 
                 if (e == null) {
                     // Note that a Post is a db response item, and a FeedPost is a model
-                    allPosts.addAll(queriedPosts);
-                    adapter.notifyDataSetChanged();
+                    adapter.clear();
+                    adapter.addAll(queriedPosts);
+                    rvPosts.smoothScrollToPosition(0);
+
+                    // SwipeRefreshLayout comes from Parent class
+                    swipeRefreshLayout.setRefreshing(false);
                 } else {
                     Log.e(TAG, "Error querying post data: " + e);
                 }

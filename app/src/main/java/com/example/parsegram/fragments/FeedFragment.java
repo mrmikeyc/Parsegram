@@ -7,9 +7,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -32,14 +36,10 @@ public class FeedFragment extends Fragment {
     List<Post> allPosts;
     PostAdapter adapter;
     RecyclerView rvPosts;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public FeedFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -53,11 +53,22 @@ public class FeedFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         rvPosts = view.findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
         adapter = new PostAdapter(getContext(), allPosts);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         rvPosts.setAdapter(adapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "Swiped to refresh data - fetching new query");
+                swipeRefreshLayout.setRefreshing(true);
+                fetchPosts();
+            }
+        });
+
         fetchPosts();
     }
 
@@ -77,13 +88,42 @@ public class FeedFragment extends Fragment {
 
                 if (e == null) {
                     // Note that a Post is a db response item, and a FeedPost is a model
-                    allPosts.addAll(queriedPosts);
-                    adapter.notifyDataSetChanged();
+                    adapter.clear();
+                    adapter.addAll(queriedPosts);
+                    rvPosts.smoothScrollToPosition(0);
+
+                    // Doesn't matter how we got here, just make sure the refresh symbol goes away!
+                    swipeRefreshLayout.setRefreshing(false);
                 } else {
                     Log.e(TAG, "Error querying post data: " + e);
                 }
             }
         });
+    }
+
+    // FOR CUSTOM NAVIGATION BAR FOR REFRESH BUTTON IN NAV BAR //
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_feed, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuBtnRefreshFeed: {
+                Log.i(TAG, "Refreshing feed via action bar");
+                swipeRefreshLayout.setRefreshing(true);
+                fetchPosts();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
