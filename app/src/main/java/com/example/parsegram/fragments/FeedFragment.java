@@ -21,12 +21,13 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FeedFragment extends Fragment {
 
     private static final String TAG = FeedFragment.class.getSimpleName();
+    private static final String CREATED_AT_KEY = "createdAt";
+    public static final int NUM_POSTS = 20;
 
     List<Post> allPosts;
     PostAdapter adapter;
@@ -60,11 +61,13 @@ public class FeedFragment extends Fragment {
         fetchPosts();
     }
 
-    private void fetchPosts() {
+    protected void fetchPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
 
         // Include a specific key so that we can narrow down our posts (i.e. by user)
         // query.include(Post.KEY_USER);
+        query.setLimit(NUM_POSTS);
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
 
         // Launch actual post
         query.findInBackground(new FindCallback<Post>() {
@@ -75,7 +78,6 @@ public class FeedFragment extends Fragment {
                 if (e == null) {
                     // Note that a Post is a db response item, and a FeedPost is a model
                     allPosts.addAll(queriedPosts);
-                    Collections.reverse(allPosts);
                     adapter.notifyDataSetChanged();
                 } else {
                     Log.e(TAG, "Error querying post data: " + e);

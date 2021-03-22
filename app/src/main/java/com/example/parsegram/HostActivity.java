@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.parsegram.fragments.ComposeFragment;
 import com.example.parsegram.fragments.FeedFragment;
+import com.example.parsegram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 // TODO: Rename HostActivity to be more generic because now it has rotating fragments
@@ -41,8 +42,7 @@ public class HostActivity extends AppCompatActivity {
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
-                        // TODO: Update fragment to go to profile
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         break;
                     default:
                         // TODO: Find way to eliminate default case - or make it a reasonable default
